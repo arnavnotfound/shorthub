@@ -1,0 +1,99 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+# Node modules directory
+node_modules/
+
+# Build output directories
+build/
+dist/
+public/
+
+# Log files
+*.log
+*.log.*
+
+# Dependency directories
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific files
+.DS_Store  # macOS
+Thumbs.db  # Windows
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# IDE/Editor files (commonly used)
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.swp
+
+# Mac-specific
+.AppleDouble
+.LSOverride
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Directory for Yarn's cache
+.yarn-cache/
+
+# Svelte build directory
+.svelte/
+
+# Optional npm cache directory
+.npm/
+
+# Coverage folder (used by Jest or other testing tools)
+coverage/
+
+# Expo/React Native
+.expo/
+.expo-shared/
+
+# Storybook files
+.storybook/
+
+# TypeScript compiled files
+*.tsbuildinfo
+
+# Next.js build output
+.next/
+
+# SvelteKit build output
+.svelte-kit/
