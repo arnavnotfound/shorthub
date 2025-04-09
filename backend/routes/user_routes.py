@@ -6,7 +6,7 @@ from utils.auth import create_jwt_token
 
 bcrypt = Bcrypt()
 
-@app.route('/api/signup', methods = ['POST'])
+@app.route('/api/register', methods = ['POST'])
 def signup():
     data= request.json
     username = data.get('username')
