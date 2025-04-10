@@ -14,14 +14,12 @@ const UploadShortcut: React.FC = () => {
   const [error, setErrors] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
-  //   const history = useHistory(); // To navigate after form submission
 
 
   const handleCreateShortcut = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      // Send the POST request to create a new shortcut
       const response = await axios.post(
         "http://localhost:5001/api/shortcuts",
         {
@@ -51,6 +49,7 @@ const UploadShortcut: React.FC = () => {
 
       }
     } catch (error) {
+      setErrors("failed to create shortcut");
       setSnackbarMessage("Failed to create shortcut!");
       setOpenSnackbar(true);
     }
@@ -121,7 +120,6 @@ const UploadShortcut: React.FC = () => {
           <br />
         </div>
 
-        {/* Snackbar to show success or error messages */}
         <Snackbar
           open={openSnackbar}
           autoHideDuration={4000}

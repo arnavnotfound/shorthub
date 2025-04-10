@@ -15,7 +15,7 @@ const PopularShortcutsList: React.FC = () => {
             },
           }
         );
-        setShortcuts(response.data); // Set the list of all shortcuts
+        setShortcuts(response.data); 
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching shortcuts:", error);

@@ -15,7 +15,7 @@ const ShortcutPage:React.FC = () => {
             const response = await axios.get(`http://localhost:5001/api/shortcuts/${id}`,  {headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             }},);
-            setShortcut(response.data); // Set the list of all shortcuts
+            setShortcut(response.data); 
             console.log(response.data);
           } catch (error) {
             console.error('Error fetching shortcut:', error);

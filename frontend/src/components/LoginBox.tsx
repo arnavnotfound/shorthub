@@ -27,9 +27,8 @@ const LoginForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         password,
       });
 
-      // Assuming you get a JWT token on successful login
       localStorage.setItem('token', response.data.access_token);
-      onClose(); // Close the form upon successful login
+      onClose(); 
     } catch (error) {
       setError('Invalid credentials. Please try again.');
     }

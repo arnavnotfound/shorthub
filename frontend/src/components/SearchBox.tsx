@@ -10,6 +10,7 @@ const SearchBox = () => {
   const [shortcuts, setShortcuts] = useState<any[]>([]);
   const [filteredShortcuts, setFilteredShortcuts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+  console.log(loading);
 
   const navigate = useNavigate();
   useEffect(() => {

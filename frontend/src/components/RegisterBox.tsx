@@ -28,7 +28,6 @@ const RegisterBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         throw new Error('Sign-up failed');
       }
 
-      // Clear the form or redirect upon success
       alert('Sign-up successful!');
 
       onClose();

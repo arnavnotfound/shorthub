@@ -5,16 +5,15 @@ import { useNavigate } from "react-router-dom";
 
 interface ShortcutCardProps {
   _id: string;
-  title: string; // Title of the shortcut
-  description: string; // Description of the shortcut
+  title: string; 
+  description: string; 
   link: string;
 }
 
 const ShortcutCard: React.FC<ShortcutCardProps> = ({ _id, title, link }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    // Use 'navigate' to programmatically redirect to the link associated with the shortcut
-    window.location.href = link; // Redirect to the shortcut's link directly (optional, based on your use case)
+    window.location.href = link; 
   };
   const colors = [
     "bg-red-500",
