@@ -2,20 +2,18 @@ from app import app,db
 from flask import request,jsonify
 from models.user_models import create_user
 from flask_bcrypt import Bcrypt
-from utils.auth import create_jwt_token
-
+from flask_jwt_extended import create_access_token
 bcrypt = Bcrypt()
 
 @app.route('/api/register', methods = ['POST'])
-def signup():
+def register():
     data= request.json
     username = data.get('username')
     password = data.get('password')
-    # Check if user already exists
+
     if (db.users.find_one({'username':username})):
         return jsonify({"message": "User already exists"}), 400
 
-    # Create user
     create_user(username, password)
     return jsonify({"message": "User created successfully!"}), 201
 
@@ -32,7 +30,21 @@ def login():
         return jsonify({"message": "Invalid "}), 401
 
     if bcrypt.check_password_hash(user['password'], password): 
-        access_token = create_jwt_token(user['_id'])
+        access_token = create_access_token(identity=username)
         return jsonify({"access_token": access_token}), 200
 
     return jsonify({"message": "Invalid credentials"}), 401
+
+
+@app.route('/api/user/<username>', methods=['GET'])
+def get_user(username):
+    user = db.users.find_one({'username':username})
+    if not user:
+        return jsonify({"message": "user not found"}), 404
+
+    return jsonify({
+        '_id': str(user['_id']),
+        'username': user['title'],
+        'shortcuts': user['shortcuts'],
+    })
+
