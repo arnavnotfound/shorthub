@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 const RegisterBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [username, setUsername] = useState('');
@@ -31,7 +32,7 @@ const RegisterBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       alert('Sign-up successful!');
 
       onClose();
-      window.location.reload();
+    //   window.location.reload();
 
     
     } catch (error) {
@@ -52,10 +53,13 @@ const RegisterBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       }}
     >
       <form onSubmit={handleSubmit} className="w-full">
-        <Typography variant="h5" gutterBottom>
-          Create an Account
-        </Typography>
+        <div className='flex flex-row gap-20 relative'>
+        <Typography variant="h5" gutterBottom>Create an Account</Typography>
+        <CloseIcon fontSize='large'  className = 'absolute right-0 top-0'onClick={onClose}></CloseIcon>
 
+
+        </div>
+        
         {/* Error Message */}
         {error && <Typography color="error" variant="body2" gutterBottom>{error}</Typography>}
 
@@ -102,10 +106,10 @@ const RegisterBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           fullWidth
           sx={{ marginTop: 2 }}
         >
-          Sign Up
+          Register
         </Button>
         
-        <Button variant="outlined"onClick={()=>{window.location.reload();}}>Close</Button>
+        
         
       </form>
     </Box>

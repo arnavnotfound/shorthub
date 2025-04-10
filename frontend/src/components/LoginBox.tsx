@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, TextField } from '@mui/material';
 import RegisterBox from './RegisterBox';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 const LoginForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [username, setUsername] = useState('');
@@ -13,6 +15,7 @@ const LoginForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   
   const handleRegisterSuccess = () => {
     setShowRegisterForm(false);
+    onClose();
   }
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -46,9 +49,11 @@ const LoginForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
 
     {showLoginForm?
-        <div className="bg-white p-6 border-black rounded-lg shadow-lg w-96">
+        <div className="bg-white p-6 border-black rounded-lg shadow-lg w-96 relative">
           
         <h2 className="text-2xl text-black mb-4">Login</h2>
+        <CloseIcon className='absolute m-5 right-0 top-0' onClick={onClose}>Close</CloseIcon>
+
 
         {error && <p className="text-red-500 mb-4">{error}</p>}
 
@@ -71,7 +76,6 @@ const LoginForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button variant="contained" onClick={handleLogin} type='submit' onSubmit={handleLogin}>Submit</Button>
-        <Button variant="outlined"onClick={onClose}>Close</Button>
         <Button variant="text" onClick={handleRegister}>Create an account?</Button>
         </form> 
         </div>

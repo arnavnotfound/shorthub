@@ -8,13 +8,14 @@ app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://localhost:27017/myDatabase"
 db = PyMongo(app).db
 jwt = JWTManager(app)
-app.config['JWT_SECRET_KEY'] = 'your-secret-key'  # Change to a more secure key in production
+app.config['JWT_SECRET_KEY'] = 'your-secret-key' 
 
-CORS(app)  # This will allow cross-origin requests from any domain
 
-from routes.shortcut_routes import *  # Make sure this path is correct
+from routes.shortcut_routes import *  
 from routes.user_routes import * 
-
+CORS(app,supports_credentials=True,origins=["http://localhost:5173"]) 
 
 if __name__ == "__main__":
     app.run(debug=True,port=5001)
+
+

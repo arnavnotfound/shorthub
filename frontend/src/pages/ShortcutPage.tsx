@@ -12,7 +12,9 @@ const ShortcutPage:React.FC = () => {
     useEffect(() => {
         const fetchShortcut = async () => {
           try {
-            const response = await axios.get(`http://localhost:5001/api/shortcuts/${id}`);
+            const response = await axios.get(`http://localhost:5001/api/shortcuts/${id}`,  {headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            }},);
             setShortcut(response.data); // Set the list of all shortcuts
             console.log(response.data);
           } catch (error) {

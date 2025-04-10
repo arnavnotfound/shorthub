@@ -7,19 +7,24 @@ import "./SearchBox.css";
 import { useNavigate } from "react-router-dom";
 const SearchBox = () => {
   const [query, setQuery] = useState("");
-  const [shortcuts, setShortcuts] = useState<any[]>([]); 
-  const [filteredShortcuts, setFilteredShortcuts] = useState<any[]>([]); 
-  const [loading, setLoading] = useState(false); 
-  
-
+  const [shortcuts, setShortcuts] = useState<any[]>([]);
+  const [filteredShortcuts, setFilteredShortcuts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
   useEffect(() => {
     setLoading(true);
     const fetchShortcuts = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/api/shortcuts");
-        setShortcuts(response.data); 
+        const response = await axios.get(
+          "http://localhost:5001/api/shortcuts",
+          {
+            headers: {
+              "Authorization": `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        setShortcuts(response.data);
         setLoading(false);
         console.log(response.data);
       } catch (error) {
@@ -32,9 +37,9 @@ const SearchBox = () => {
 
   useEffect(() => {
     const fuse = new Fuse(shortcuts, {
-      keys: ["title"], 
-      includeScore: true, 
-      threshold: 0.3, 
+      keys: ["title"],
+      includeScore: true,
+      threshold: 0.3,
     });
 
     // Perform the fuzzy search
@@ -42,9 +47,8 @@ const SearchBox = () => {
     setFilteredShortcuts(results); // Set the filtered results
   }, [query, shortcuts]);
   const handleSearch = (e: React.FormEvent) => {
-
     e.preventDefault();
-    console.log(query); 
+    console.log(query);
   };
   const handleShortcutClick = (id: string) => {
     navigate(`/shortcuts/${id}`);
@@ -63,7 +67,7 @@ const SearchBox = () => {
             type="text"
             className="search-box"
             placeholder="Search Shortcuts..."
-          />    
+          />
           {filteredShortcuts.length > 0 && query && (
             <Box>
               <Paper

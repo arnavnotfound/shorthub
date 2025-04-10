@@ -5,6 +5,7 @@ import UploadShortcut from './pages/UploadShortcut';
 import RequestShortcut from './pages/RequestShortcut';
 import Navbar from './components/Navbar';
 import ShortcutPage from './pages/ShortcutPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
     <Route path="/upload-shortcut" element={<UploadShortcut/>}/>
     <Route path="/request-shortcut" element={<RequestShortcut/>}/>
     <Route path= "/shortcuts/:id" element={<ShortcutPage />}/>
-
+    <Route path= "/profile/:username" element= {<ProfilePage/>}/>
     </Routes>
     </Router>
     
