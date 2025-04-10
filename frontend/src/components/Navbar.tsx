@@ -4,13 +4,13 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemText,
+  
 } from "@mui/material";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import LoginForm from "./LoginBox";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -22,9 +22,11 @@ const Navbar = () => {
   const isUploadShortcutPage = location.pathname === "/upload-shortcut";
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  
+  
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -143,6 +145,8 @@ const Navbar = () => {
         </div>
       </div>
       {showLoginForm && <LoginForm onClose={handleLoginSuccess} />}
+
+      {}
     </>
   );
 };
