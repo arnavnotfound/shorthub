@@ -28,15 +28,9 @@ def create_shortcut():
         'approved': False,
         'created_by': current_username
     }
-    # unapproved_shortcuts = user.get("unapproved_shortcuts",[])
-    # print(unapproved_shortcuts)
-    # unapproved_shortcuts.append(shortcut)
+
     db.shortcuts.insert_one(shortcut)
-    # db.users.update_one(
-    #     {"username": current_username},
-    #     {"$set":{"unapproved_shortcuts": unapproved_shortcuts}}
-    # )
-    # print(user)
+
     return jsonify({
         "message": "Shortcut created successfully",
         "_id": shortcut['_id'] 
@@ -67,4 +61,19 @@ def get_shortcut(shortcut_id):
         'title': shortcut['title'],
         'description': shortcut['description'],
         'link': shortcut['link'],
+        'created_by': shortcut['created_by']
     })
+
+@app.route('/api/<username>/shortcuts', methods=['GET'])
+@jwt_required()
+def get_user_shortcuts(username):
+    shortcuts = db.shortcuts.find({'created_by': username})
+
+    return jsonify([{
+        '_id': str(shortcut['_id']),
+        'title': shortcut['title'],
+        'description': shortcut['description'],
+        'link': shortcut['link'],
+    } for shortcut in shortcuts])
+
+    

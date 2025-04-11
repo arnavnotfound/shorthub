@@ -2,7 +2,7 @@ from app import app,db
 from flask import request,jsonify
 from models.user_models import create_user
 from flask_bcrypt import Bcrypt
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 bcrypt = Bcrypt()
 
 @app.route('/api/register', methods = ['POST'])
@@ -46,4 +46,14 @@ def get_user(username):
         '_id': str(user['_id']),
         'username': user['title'],
     })
+
+@app.route('/api/current-user', methods=['GET'])
+@jwt_required()
+def get_current_user():
+    current_user = get_jwt_identity()
+    return jsonify({
+        # '_id': str(current_user['_id']),
+        'username': current_user['username']
+    })
+
 

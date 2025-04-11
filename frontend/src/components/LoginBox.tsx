@@ -28,7 +28,9 @@ const LoginForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       });
 
       localStorage.setItem('token', response.data.access_token);
+      localStorage.setItem('username', username);
       onClose(); 
+      
     } catch (error) {
       setError('Invalid credentials. Please try again.');
     }

@@ -20,10 +20,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isUploadShortcutPage = location.pathname === "/upload-shortcut";
-
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  
-  
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);  
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -119,7 +116,7 @@ const Navbar = () => {
                   <div className="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-lg w-48">
                     <List>
                       <ListItem>
-                        <ListItemButton onClick={()=>navigate('/profile')}>
+                        <ListItemButton onClick={()=>navigate(`/profile/${localStorage.getItem("username")}`)}>
                           <ListItemIcon>
                             <AccountCircleIcon />
                           </ListItemIcon>
