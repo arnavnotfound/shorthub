@@ -44,6 +44,7 @@ const ProfilePage = () => {
                 title={shortcut.title}
                 description={shortcut.description}
                 link={shortcut.link}
+                created_by={shortcut.created_by}
               />
             </div>
           ))}

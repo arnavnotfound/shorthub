@@ -1,19 +1,24 @@
 import React from "react";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useNavigate } from "react-router-dom";
-// import { IconButton } from 'shadcn';
 
 interface ShortcutCardProps {
   _id: string;
-  title: string; 
-  description: string; 
+  title: string;
+  description: string;
   link: string;
+  created_by: string;
 }
 
-const ShortcutCard: React.FC<ShortcutCardProps> = ({ _id, title, link }) => {
+const ShortcutCard: React.FC<ShortcutCardProps> = ({
+  _id,
+  title,
+  link,
+  created_by,
+}) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    window.location.href = link; 
+    window.location.href = link;
   };
   const colors = [
     "bg-red-500",
@@ -38,6 +43,7 @@ const ShortcutCard: React.FC<ShortcutCardProps> = ({ _id, title, link }) => {
         fontSize="large"
         className="text-white absolute bottom-5 right-5"
       />
+      <div className="absolute bottom-5 left-5">{created_by}</div>
     </div>
   );
 };

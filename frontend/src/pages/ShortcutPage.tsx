@@ -27,7 +27,7 @@ const ShortcutPage:React.FC = () => {
     return (
         <>
         <div className="flex flex-col gap-5 p-5 sm:flex-row">
-        <ShortcutCard  title = {shortcut.title} link={shortcut.link} _id={shortcut._id} description={shortcut.description}/>
+        <ShortcutCard created_by={shortcut.created_by} title = {shortcut.title} link={shortcut.link} _id={shortcut._id} description={shortcut.description}/>
         <div>
           <p><b>Created by:</b> <a href={`/profile/${shortcut.created_by}`}>{shortcut.created_by}</a></p>
 

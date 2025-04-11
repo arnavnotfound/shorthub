@@ -45,6 +45,7 @@ def get_all_shortcuts():
         'title': shortcut['title'],
         'description': shortcut['description'],
         'link': shortcut['link'],
+        'created_by': shortcut['created_by']
     } for shortcut in shortcuts])
 
 @app.route('/api/shortcuts/<shortcut_id>', methods=['GET'])
