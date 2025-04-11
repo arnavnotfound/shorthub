@@ -9,9 +9,7 @@ def create_user(username,password):
     user = {
         '_id' : str(uuid.uuid4()),
         'username': username,
-        'password': hashed_password,
-        'approved_shortcuts': [],
-        'unapproved_shortcuts': []
+        'password': hashed_password
     }
     db.users.insert_one(user)
     return jsonify(user) 

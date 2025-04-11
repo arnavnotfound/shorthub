@@ -45,6 +45,5 @@ def get_user(username):
     return jsonify({
         '_id': str(user['_id']),
         'username': user['title'],
-        'shortcuts': user['shortcuts'],
     })
 
