@@ -5,20 +5,21 @@ import { List, ListItemButton, ListItemText, Paper, Box } from "@mui/material";
 
 import "./SearchBox.css";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../App";
 const SearchBox = () => {
   const [query, setQuery] = useState("");
   const [shortcuts, setShortcuts] = useState<any[]>([]);
   const [filteredShortcuts, setFilteredShortcuts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
-  console.log(loading);
+  // const [loading, setLoading] = useState(false);
+  // console.log(loading);
 
   const navigate = useNavigate();
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     const fetchShortcuts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5001/api/shortcuts",
+          `${API_URL}/api/shortcuts`,
           {
             headers: {
               "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -26,8 +27,7 @@ const SearchBox = () => {
           }
         );
         setShortcuts(response.data);
-        setLoading(false);
-        console.log(response.data);
+        // setLoading(false);
       } catch (error) {
         console.error("Error fetching shortcuts:", error);
       }

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Button, TextField } from '@mui/material';
 import RegisterBox from './RegisterBox';
 import CloseIcon from '@mui/icons-material/Close';
+import { API_URL } from '../App';
 
 
 const LoginForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
@@ -11,8 +12,7 @@ const LoginForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [error, setError] = useState('');
   const [showLoginForm, setShowLoginForm] = useState(true);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
-
-  
+    
   const handleRegisterSuccess = () => {
     setShowRegisterForm(false);
     onClose();
@@ -22,7 +22,7 @@ const LoginForm: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     e.preventDefault();
     
     try {
-      const response = await axios.post('http://localhost:5001/api/login', {
+      const response = await axios.post(`${API_URL}/api/login`, {
         username,
         password,
       });

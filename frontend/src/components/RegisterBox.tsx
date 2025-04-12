@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { API_URL } from '../App';
 
 const RegisterBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const [username, setUsername] = useState('');
@@ -18,7 +19,7 @@ const RegisterBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     }
 
     try {
-      const response = await fetch('http://localhost:5001/api/register', {
+      const response = await fetch(`${API_URL}/api/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),

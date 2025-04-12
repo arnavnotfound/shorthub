@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import ShortcutCard from "../components/ShortcutCard";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
+import { API_URL } from "../App";
 
 const ShortcutPage:React.FC = () => {
     const { id } = useParams<{ id:string }>();
     const [shortcut, setShortcut] = useState<any>('');
-    // const [error, setError] = useState<string>('');
 
-    const navigate = useNavigate();
     useEffect(() => {
         const fetchShortcut = async () => {
           try {
-            const response = await axios.get(`http://localhost:5001/api/shortcuts/${id}`,  {headers: {
+            const response = await axios.get(`${API_URL}/api/shortcuts/${id}`,  {headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             }},);
             setShortcut(response.data); 

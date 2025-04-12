@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ShortcutCard from "../components/ShortcutCard";
+import { API_URL } from "../App";
 
 const ProfilePage = () => {
     const { username } = useParams<{ username:string }>();
@@ -11,7 +12,7 @@ const ProfilePage = () => {
         const fetchUserShortcuts = async () => {
         try {
             const response = await axios.get(
-            `http://localhost:5001/api/${username}/shortcuts`,
+            `${API_URL}/api/${username}/shortcuts`,
             {
                 headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`,

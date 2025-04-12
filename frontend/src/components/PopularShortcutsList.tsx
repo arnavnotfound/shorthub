@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import ShortcutCard from "./ShortcutCard";
 import axios from "axios";
+import { API_URL } from "../App";
 
 const PopularShortcutsList: React.FC = () => {
   const [shortcuts, setShortcuts] = useState<any[]>([]);
+
   useEffect(() => {
     const fetchShortcuts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5001/api/shortcuts",
+          `${API_URL}/api/shortcuts`,
           {
             headers: {
               "Authorization": `Bearer ${localStorage.getItem("token")}`,
@@ -16,7 +18,6 @@ const PopularShortcutsList: React.FC = () => {
           }
         );
         setShortcuts(response.data); 
-        console.log(response.data);
       } catch (error) {
         console.error("Error fetching shortcuts:", error);
       }

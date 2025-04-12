@@ -7,8 +7,10 @@ import Navbar from './components/Navbar';
 import ShortcutPage from './pages/ShortcutPage';
 import ProfilePage from './pages/ProfilePage';
 
-function App() {
+export const API_URL = import.meta.env.VITE_API_URL;
 
+function App() {
+  
   return (
     <>
     <Router>

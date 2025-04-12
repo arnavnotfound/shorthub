@@ -6,6 +6,7 @@ import {
   Alert
 } from "@mui/material";
 import axios from "axios";
+import { API_URL } from "../App";
 
 const UploadShortcut: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -21,7 +22,7 @@ const UploadShortcut: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/api/shortcuts",
+        `${API_URL}/api/shortcuts`,
         {
           title,
           description,
