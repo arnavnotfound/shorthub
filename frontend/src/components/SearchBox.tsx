@@ -10,12 +10,9 @@ const SearchBox = () => {
   const [query, setQuery] = useState("");
   const [shortcuts, setShortcuts] = useState<any[]>([]);
   const [filteredShortcuts, setFilteredShortcuts] = useState<any[]>([]);
-  // const [loading, setLoading] = useState(false);
-  // console.log(loading);
 
   const navigate = useNavigate();
   useEffect(() => {
-    // setLoading(true);
     const fetchShortcuts = async () => {
       try {
         const response = await axios.get(
@@ -27,7 +24,6 @@ const SearchBox = () => {
           }
         );
         setShortcuts(response.data);
-        // setLoading(false);
       } catch (error) {
         console.error("Error fetching shortcuts:", error);
       }
@@ -43,9 +39,8 @@ const SearchBox = () => {
       threshold: 0.3,
     });
 
-    // Perform the fuzzy search
     const results = fuse.search(query).map((result) => result.item);
-    setFilteredShortcuts(results); // Set the filtered results
+    setFilteredShortcuts(results); 
   }, [query, shortcuts]);
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

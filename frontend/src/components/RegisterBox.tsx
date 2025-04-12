@@ -1,42 +1,37 @@
-import React, { useState } from 'react';
-import { TextField, Button, Box, Typography } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
-import { API_URL } from '../App';
+import React, { useState } from "react";
+import { TextField, Button, Box, Typography } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { API_URL } from "../App";
 
 const RegisterBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
-  const [username, setUsername] = useState('');
-//   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState<string>('');
+  const [username, setUsername] = useState("");
+  //   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState<string>("");
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       return;
     }
 
     try {
       const response = await fetch(`${API_URL}/api/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
       });
 
       if (!response.ok) {
-        throw new Error('Sign-up failed');
+        throw new Error("Sign-up failed");
       }
-
-      alert('Sign-up successful!');
-
+      alert("Sign-up successful!");
       onClose();
-    //   window.location.reload();
-
-    
     } catch (error) {
-      setError('Sign-up failed, please try again.');
+      setError("Sign-up failed, please try again.");
     }
   };
 
@@ -44,24 +39,32 @@ const RegisterBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     <Box
       className="flex justify-center items-center min-h-[50vw] sm:min-h-[20vw]"
       sx={{
-        maxWidth: '400px',
-        margin: '0 auto',
+        maxWidth: "400px",
+        margin: "0 auto",
         padding: 4,
-        backgroundColor: '#fff',
+        backgroundColor: "#fff",
         borderRadius: 2,
         boxShadow: 3,
       }}
     >
       <form onSubmit={handleSubmit} className="w-full">
-        <div className='flex flex-row gap-20 relative'>
-        <Typography variant="h5" gutterBottom>Create an Account</Typography>
-        <CloseIcon fontSize='large'  className = 'absolute right-0 top-0'onClick={onClose}></CloseIcon>
-
-
+        <div className="flex flex-row gap-20 relative">
+          <Typography variant="h5" gutterBottom>
+            Create an Account
+          </Typography>
+          <CloseIcon
+            fontSize="large"
+            className="absolute right-0 top-0"
+            onClick={onClose}
+          ></CloseIcon>
         </div>
-        
+
         {/* Error Message */}
-        {error && <Typography color="error" variant="body2" gutterBottom>{error}</Typography>}
+        {error && (
+          <Typography color="error" variant="body2" gutterBottom>
+            {error}
+          </Typography>
+        )}
 
         <TextField
           label="Username"
@@ -108,9 +111,6 @@ const RegisterBox: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         >
           Register
         </Button>
-        
-        
-        
       </form>
     </Box>
   );
